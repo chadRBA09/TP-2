@@ -187,13 +187,15 @@ public class TP02Q01 {
         Scanner sc = new Scanner(System.in);
         Jogador[] jogador = new Jogador[3922];
         int cont = 0;
-        
+        for(int i=0;i<3922;i++){
+            jogador[i] = new Jogador();
+        }
         try{
-            BufferedReader arq = new BufferedReader(new FileReader("Players.csv")); //Leitura do arquivo
+            BufferedReader arq = new BufferedReader(new FileReader("/tmp/players.csv")); //Leitura do arquivo
             arq.readLine(); //lendo a primeira linha para pular para a segunda
             while(arq.ready()) //enquanto nao estiver no fim do arquivo 
             {
-                jogador[cont] = new Jogador();
+                
                 jogador[cont].ler(arq.readLine());
                 cont++;
             }
