@@ -165,14 +165,19 @@ class Jogador {
         setNome(linha.substring(index[0]+1,index[1]));
         setAltura(Integer.parseInt(linha.substring(index[1]+1,index[2])));
         setPeso(Integer.parseInt(linha.substring(index[2]+1,index[3])));
+        if ((index[4] - index[3]+1) != 2)
         setUniversidade(linha.substring(index[3]+1,index[4]));
-        setAnoNascimento(Integer.parseInt(linha.substring(index[4]+1,index[5])));
-        setCidadeNascimento(linha.substring(index[5]+1,index[6]));
-        setEstadoNascimento((linha.substring(index[6]+1,linha.length())));
-        /*if ((linha.length() - index[6]+1) != 2) // teste para ver se a diferença das posições é diferente de 1, se nao for significado que não tem nada
-        System.out.println(linha.substring(index[6]+1,linha.length()));
         else
-        System.out.println("nao informado");*/
+        setUniversidade("nao informado");
+        setAnoNascimento(Integer.parseInt(linha.substring(index[4]+1,index[5])));
+        if ((index[6] - index[5]+1) != 2) 
+        setCidadeNascimento(linha.substring(index[5]+1,index[6]));
+        else
+        setCidadeNascimento("nao informado");
+        if ((linha.length() - index[6]+1) != 2) 
+        setEstadoNascimento((linha.substring(index[6]+1,linha.length())));
+        else
+        setEstadoNascimento("nao informado");
     }
     
 }
@@ -180,7 +185,7 @@ class Jogador {
 public class TP02Q01 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Jogador[] jogador = new Jogador[3923];
+        Jogador[] jogador = new Jogador[3922];
         int cont = 0;
         
         try{
@@ -202,8 +207,13 @@ public class TP02Q01 {
         {
             for (int i = 0; i < jogador.length; i++)
             {
-                jogador[i].imprimir();
+                if(jogador[i].getId() == Integer.parseInt(id))
+                {
+                    jogador[i].imprimir();
+                    break;
+                }
             }
+            id = sc.nextLine();
         }
     }
 }
